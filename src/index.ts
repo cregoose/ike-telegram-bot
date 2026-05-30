@@ -59,3 +59,4 @@ bot.catch((err) => {
 bot.start();
 
 console.log("Бот запущен");
+//:)
