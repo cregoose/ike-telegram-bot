@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  telegramId BigInt @unique
+
+  username String?
+  firstName String
+
+  createdAt DateTime @default(now())
+
+  stats UserStats[]
+}
+
+model UserStats {
+  id Int @id @default(autoincrement())
+
+  userId Int
+  chatId BigInt
+
+  totalPosts Int @default(0)
+
+  maxCharsWeek Int @default(0)
+  maxCharsMonth Int @default(0)
+  maxCharsAllTime Int @default(0)
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, chatId])
+}
