@@ -1,5 +1,6 @@
 import { Bot } from "grammy";
 import dotenv from "dotenv";
+import http from 'http';
 
 import { moderationHandler } from "./commands/moderation";
 import { postTracker } from "./handlers/postTracker";
@@ -70,6 +71,16 @@ setupChatMemberHandler(bot);
 
 bot.start({
     allowed_updates: ["message", "callback_query", "chat_member"]
+});
+
+
+// Заглушка для Render, чтобы он видел открытый порт
+const PORT = process.env.PORT || 3000;
+http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Bot is running');
+}).listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
 });
 
 console.log("Бот запущен");
