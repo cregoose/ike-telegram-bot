@@ -3,3 +3,23 @@ node_modules
 .env
 
 /src/generated/prisma
+
+# Зависимости (самая тяжелая папка)
+node_modules/
+jspm_packages/
+
+# Скомпилированный код (если есть)
+dist/
+build/
+
+# Локальные переменные окружения (там твой токен бота и пароль от БД, их нельзя паблику)
+.env
+.env.local
+
+# Логи ошибок
+*.log
+npm-debug.log*
+
+# Настройки VS Code
+.vscode/
+.idea/

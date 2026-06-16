@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `userstats` ADD COLUMN `postsMonth` INTEGER NOT NULL DEFAULT 0,
+    ADD COLUMN `postsWeek` INTEGER NOT NULL DEFAULT 0;
