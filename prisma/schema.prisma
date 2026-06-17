@@ -43,10 +43,12 @@ model UserStats {
 }
 
 model ChatSettings {
-  chatId   BigInt  @id
-  sendToPM Boolean @default(false) // true — всем в ЛС, false — всем в группу
+  chatId         BigInt  @id
+  sendToPM       Boolean @default(false)
+  autoDeleteTime Int     @default(0)       // Добавлено для автоудаления (в секундах)
+  minChars       Int     @default(0)       // Добавлено для лимита символов
+  minCharsAction String  @default("none")  // Добавлено для действия (например, "delete" или "warn")
 }
-
 model DailyActivity {
   id        Int      @id @default(autoincrement())
   chatId    BigInt
