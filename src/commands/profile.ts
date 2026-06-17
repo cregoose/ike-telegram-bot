@@ -168,7 +168,7 @@ export async function profileHandler(ctx: Context) {
 
     const profileText = 
         `📖 Профиль ${displayUsername}\n\n` +
-        `📝 Количество постов in this чате:\n` +
+        `📝 Количество постов:\n` +
         `• За неделю: ${stats.postsWeek}\n` +
         `• За месяц: ${stats.postsMonth}\n` +
         `• Всё время: ${stats.totalPosts}\n\n` +
