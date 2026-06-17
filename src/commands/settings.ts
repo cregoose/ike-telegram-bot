@@ -150,6 +150,11 @@ export async function settingsCallbackHandler(ctx: Context) {
         const chatId = callbackData.split(":")[1];
         if (!chatId) return;
 
+        // ЗАЩИТА: Проверяем, админ ли тот, кто нажал на кнопку
+        if (!(await checkIsAdmin(ctx, ctx.from.id))) {
+            return ctx.answerCallbackQuery({ text: "У вас нет прав администратора!", show_alert: true });
+        }
+
         await ctx.answerCallbackQuery();
 
         const kb = new InlineKeyboard()
@@ -175,6 +180,11 @@ export async function settingsCallbackHandler(ctx: Context) {
         
         // Защита от undefined
         if (!minsStr || !chatIdStr) return;
+
+        // ЗАЩИТА: Проверяем права на изменение значения
+        if (!(await checkIsAdmin(ctx, ctx.from.id))) {
+            return ctx.answerCallbackQuery({ text: "У вас нет прав администратора!", show_alert: true });
+        }
 
         const minutes = parseInt(minsStr);
         const chatId = BigInt(chatIdStr);
