@@ -83,5 +83,16 @@ http.createServer((req, res) => {
   console.log(`Server is listening on port ${PORT}`);
 });
 
+// Пинг базы данных каждые 2 часа, чтобы Aiven не уходил в спячку
+setInterval(async () => {
+    try {
+        // Делаем самый легкий запрос, например, считаем количество настроек
+        await prisma.chatSettings.count();
+        console.log("=== [DB Ping] Успешный пинг базы данных для предотвращения сна ===");
+    } catch (error) {
+        console.error("=== [DB Ping] Ошибка пинга БД:", error);
+    }
+}, 2 * 60 * 60 * 1000); // 2 часа в миллисекундах
+
 console.log("Бот запущен");
 //:)
