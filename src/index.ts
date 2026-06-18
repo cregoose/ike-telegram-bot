@@ -1,6 +1,7 @@
 import { Bot } from "grammy";
 import dotenv from "dotenv";
 import http from 'http';
+import { prisma } from "./database/prisma";
 
 import { moderationHandler } from "./commands/moderation";
 import { postTracker } from "./handlers/postTracker";
